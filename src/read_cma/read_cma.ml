@@ -11,5 +11,6 @@ let units fn =
   let toc = (input_value ic : Cmo_format.library) in
   close_in ic;
 
-  List.map toc.lib_units ~f:(fun cu -> cu.Cmo_format.cu_name)
+  List.map toc.lib_units
+    ~f:(fun cu -> Compilation_unit.Name.to_string cu.Cmo_format.cu_name)
   |> List.sort ~cmp:String.compare
